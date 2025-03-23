@@ -1,2 +1,3 @@
-# rpg-python-bot
- Um bot de RPG para Discord Usando Python
+# A Grande Jornada
+
+Um bot pensado para o Discord, em formato de RPG, que segue os grandes acontecimentos da Bíblia.
