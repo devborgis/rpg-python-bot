@@ -15,23 +15,25 @@ discord_token = os.getenv("BOT_TOKEN")
 if not discord_token:
     raise ValueError("Error: Token não encontrado")
 
-# Intents e Criação do BOT
+# Intents(Permissões) e Criação do BOT
 intents = discord.Intents.all()
 Prefix = "jc!"
 bot = commands.Bot(Prefix, intents=intents)
 
-
 # Comandos e Eventos
-TestarMongo()
+TestarMongo() # Testando Com MongoDB data/database.py
 
 @bot.event
 async def on_ready():
-    print("Bot inicializado")
+    print(f'Bot {bot.user} está online!')
+    
+    # Registrar os comandos no Discord (sync)
+    await bot.tree.sync()
+    print("Comandos registrados com sucesso!")
 
-@bot.command()
-async def ola(ctx):
-    nome = ctx.author.name
-    await ctx.reply(f"Hello, World ! {nome}")
+# Varregar os comandos da pasta Commands
+from commands import *
+setup(bot, db)
 
 # Iniciando Bot 
 bot.run(discord_token)
